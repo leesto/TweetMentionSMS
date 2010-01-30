@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>Twittermention</servlet-name>
+		<servlet-class>com.leestone.twittermention.TwittermentionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Twittermention</servlet-name>
+		<url-pattern>/twittermention</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Cron</servlet-name>
+		<servlet-class>com.leestone.twittermention.CronServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Cron</servlet-name>
+		<url-pattern>/runcron</url-pattern>
+	</servlet-mapping>
+	<security-constraint>
+        <web-resource-collection>
+        	<web-resource-name>runcron</web-resource-name> 
+            <url-pattern>/runcron/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
